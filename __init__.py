@@ -5,8 +5,8 @@ import sys
 
 global cred_oracle
 base_path = tmp_global_obj["basepath"]
-curpath = base_path + os.sep + "modules" + os.sep + "oracle" + os.sep + "libs"
-bin_path = base_path + os.sep + "modules" + os.sep + "oracle" + os.sep + "bin"
+curpath = base_path  + "modules" + os.sep + "Oracle" + os.sep + "libs"
+bin_path = base_path + "modules" + os.sep + "Oracle" + os.sep + "bin"
 
 if bin_path not in os.environ['PATH']:
     os.environ["PATH"] += os.pathsep + bin_path
