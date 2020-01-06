@@ -8,6 +8,11 @@
 
 ![alt text](https://raw.githubusercontent.com/rocketbot-cl/Oracle_DB/master/example/oracle2.png)
 
+<strong>Video Example:</strong>
+
+[![Oracle](https://img.youtube.com/vi/zuvqTOeE_gk/0.jpg)](https://www.youtube.com/watch?v=zuvqTOeE_gk "Oracle")
+
+
 <h2>Dependencies</h2>
 
 <ul>
