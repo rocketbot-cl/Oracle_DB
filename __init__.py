@@ -10,6 +10,7 @@ bin_path = base_path + "modules" + os.sep + "Oracle" + os.sep + "bin"
 
 if bin_path not in os.environ['PATH']:
     os.environ["PATH"] += os.pathsep + bin_path
+
 if curpath not in sys.path:
     sys.path.append(curpath)
 import cx_Oracle
@@ -31,6 +32,8 @@ if module == "connect":
     con = cx_Oracle.connect(user, password, dsn)
     try:
         cursor = con.cursor()
+        res = True
+        SetVar(result, res)
     except Exception as e:
         PrintException()
         raise e
@@ -38,7 +41,6 @@ if module == "connect":
 if module == "execute":
     query = GetParams('query')
     result = GetParams('result')
-
 
     # user = cred_oracle['user']
     # password = cred_oracle['password']
@@ -52,7 +54,7 @@ if module == "execute":
 
     try:
        cursor.execute(query)
-       if query.lower().startswith("insert") or query.lower().startswith("update"):
+       if query.lower().startswith("insert") or query.lower().startswith("update") or query.lower().startswith("delete"):
            con.commit()
            if result:
                SetVar(result, True)
