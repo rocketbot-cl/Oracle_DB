@@ -40,7 +40,7 @@
             "type": "input",
             "placeholder": "sys",
             "title": {
-              "es": "Usuario",
+              "es": "Usuario:",
               "en": "User:"
             },
             "id": "user",
@@ -71,7 +71,11 @@
             "placeholder": "var",
             "title": {
               "es": "Asignar a variable:",
-              "en": "Set to var:"
+              "en": "Assign to variable:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}"
             },
             "id": "result",
             "css": "col-md-3"
