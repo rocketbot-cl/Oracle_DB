@@ -3,7 +3,6 @@
 
 **In the example robot you must change the connection data for yours.
 
-![alt text](https://raw.githubusercontent.com/rocketbot-cl/Oracle_DB/master/example/oracle.png)
 
 ![alt text](https://raw.githubusercontent.com/rocketbot-cl/Oracle_DB/master/example/oracle2.png)
 
