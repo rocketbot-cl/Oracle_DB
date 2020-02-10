@@ -54,7 +54,8 @@ if module == "execute":
 
     try:
        cursor.execute(query)
-       if query.lower().startswith("insert") or query.lower().startswith("update") or query.lower().startswith("delete"):
+       if query.lower().startswith("insert") or query.lower().startswith("update") or query.lower().startswith(
+               "delete") or query.lower().startswith("alter"):
            con.commit()
            if result:
                SetVar(result, True)
