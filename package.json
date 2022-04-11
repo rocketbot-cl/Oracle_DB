@@ -43,6 +43,10 @@
               "es": "Sesión:",
               "en": "Session:"
             },
+            "description":{
+                "es":"Nombre que se desea poner a la sesion",
+                "en":"Name for identify the session"
+            },
             "id": "session",
             "css": "col-md-6"
           },
@@ -52,6 +56,10 @@
             "title": {
               "es": "Usuario:",
               "en": "User:"
+            },
+            "description":{
+                "es":"Nombre de usuario de la base de datos",
+                "en":"Name of the user to connect to the data base"
             },
             "id": "user",
             "css": "col-md-6"
@@ -63,6 +71,10 @@
               "es": "Contraseña:",
               "en": "Password:"
             },
+            "description":{
+                "es":"Password del usuario previamente usado",
+                "en":"Password from the user previously used"
+            },
             "id": "password",
             "css": "col-md-4"
           },
@@ -70,10 +82,42 @@
             "type": "input",
             "placeholder": "Oracle.host.com/ORCL",
             "title": {
-              "es": "DSN de Conexion:",
-              "en": "DSN:"
+              "es": "DSN Hostname de Conexion:",
+              "en": "DSN Hostname:"
             },
-            "id": "dsn",
+            "description":{
+                "es":"Hostname asignado en el DSN",
+                "en":"Hostname from the DSN"
+            },
+            "id": "dsnHostname",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "1521",
+            "title": {
+              "es": "DSN Puerto de Conexion:",
+              "en": "DSN Port:"
+            },
+            "description":{
+                "es":"Puerto asignado en el DSN",
+                "en":"Port from the DSN"
+            },
+            "id": "dsnPort",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "pdborcl / pdborcl.example.com",
+            "title": {
+              "es": "DSN SID / Service name de Conexion:",
+              "en": "DSN SID / Service name:"
+            },
+            "description":{
+                "es":"SID o nombre de servicio asignado en el DSN",
+                "en":"SID or service name from the DSN"
+            },
+            "id": "dsnSID",
             "css": "col-md-4"
           },
           {
@@ -83,6 +127,10 @@
               "es": "Asignar a variable:",
               "en": "Assign to variable:"
             },
+            "description": {
+                "es": "Variable donde se desea guardar el resultado.",
+                "en": "Varialbe where to store the result."
+              },
             "help": {
               "es": "Nombre de variable sin {}",
               "en": "Variable name without {}"
@@ -128,6 +176,10 @@
               "es": "Query:",
               "en": "Query:"
             },
+            "description":{
+                "es":"Query que se desea ejecutar en la base de datos",
+                "en":"Query to execute in the database"
+            },
             "id": "query",
             "css": "col-md-12"
           },
@@ -137,6 +189,10 @@
             "title": {
               "es": "Sesión:",
               "en": "Session:"
+            },
+            "description":{
+                "es":"Nombre de la sesion previamente iniciada",
+                "en":"Name of the session previously started"
             },
             "id": "session",
             "css": "col-md-6"
@@ -148,6 +204,10 @@
               "es": "Asignar resultado a variable:",
               "en": "Set result to var:"
             },
+            "description": {
+                "es": "Variable donde se desea guardar el resultado.",
+                "en": "Varialbe where to store the result."
+              },
             "help": {
               "es": "Nombre de variable sin {}",
               "en": "Variable name without {}"
@@ -192,6 +252,10 @@
             "title": {
               "es": "Sesión:",
               "en": "Session:"
+            },
+            "description":{
+                "es":"Nombre de la sesion previamente iniciada que se desea cerrar",
+                "en":"Name of the session previously started that you want to close"
             },
             "id": "session",
             "css": "col-md-12"

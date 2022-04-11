@@ -14,6 +14,8 @@ if cur_path not in sys.path:
     sys.path.append(cur_path)
 
 import cx_Oracle
+import re
+import datetime
 
 # Globals declared here
 global mod_oracle_sessions
@@ -32,12 +34,33 @@ module = GetParams('module')
 if module == "connect":
     user = GetParams('user')
     password = GetParams('password')
-    dsn = GetParams('dsn')
+    dsnHostname = GetParams('dsnHostname')
+    dsnPort = GetParams('dsnPort')
+    dsnSID = GetParams('dsnSID')
     session = GetParams('session')
     result = GetParams('result')
+    oracle_client_path = GetParams("oracle_client_path")
+    dsn = ""
 
     if not session:
         session = SESSION_DEFAULT
+    
+    
+    if oracle_client_path is not None:
+        try:
+            cx_Oracle.init_oracle_client(config_dir=oracle_client_path)
+        except:
+            pass
+        
+    # dsn = cx_Oracle.makedsn("olmo", "1521", "PROD")
+
+    if dsnHostname is not None:
+
+        try:
+            dsn = cx_Oracle.makedsn(dsnHostname, dsnPort, dsnSID)
+        except:
+            pass
+
 
     con = cx_Oracle.connect(user, password, dsn)
     try:
@@ -72,8 +95,22 @@ if module == "execute":
         # cred_oracle = {"user": user, "password": password, "dsn": dsn}
         else:
             data = [r for r in cursor]
+            regex = r"datetime.datetime\(\d\d\d\d,\s?\d\d,\s?\d\d?,\s?\d\d?,\s?\d\d?,?\s?\d?\d?\)"
+            regex2 = r"datetime.datetime\(\d\d\d\d,\s?\d,\s?\d\d?,\s?\d\d?,\s?\d\d?,?\s?\d?\d?\)"
+            data_str = str(data)
+            matches = re.finditer(regex, data_str, re.MULTILINE)
+            matches2 = re.finditer(regex2, data_str, re.MULTILINE)
+            for match in matches:
+                data_str = data_str.replace(match.group(), '"{}"'.format(eval(match.group()).strftime("%d/%m/%Y")))
+            for match in matches2:
+                data_str = data_str.replace(match.group(), '"{}"'.format(eval(match.group()).strftime("%d/%m/%Y")))
             if result:
-                SetVar(result, data)
+                try:
+                    data = eval(data_str)
+                    mod_oracle_sessions[session][result] = data
+                except:
+                    mod_oracle_sessions[session][result] = data_str
+                SetVar(result, data_str)
     except Exception as e:
         PrintException()
         raise e
