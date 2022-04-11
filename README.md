@@ -1,40 +1,47 @@
-# Oracle_DB
- Module to connect to an Oracle Database
-
-**In the example robot you must change the connection data for yours.
 
 
-![alt text](https://raw.githubusercontent.com/rocketbot-cl/Oracle_DB/master/example/oracle1.png)
-
-![alt text](https://raw.githubusercontent.com/rocketbot-cl/Oracle_DB/master/example/oracle2.png)
-
-<strong>Video Example:</strong>
-
-[![Oracle](https://img.youtube.com/vi/zuvqTOeE_gk/0.jpg)](https://www.youtube.com/watch?v=zuvqTOeE_gk "Oracle")
 
 
-<h2>Dependencies</h2>
+# Oracle
+  
+Module to connect to Oracle Database.
 
-<ul>
-  <li>
-    <strong>
-      <a href="https://pypi.org/project/cx-Oracle/">cx_Oracle</a>
-    </strong> 
-  </li>  
-</ul>  
+## How to install this module
+  
+__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
-<ul>
-  <li>
-    <strong>
-      <a href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html">Oracle Client-to-Oracle Database </a>
-    </strong> 
-  </li>  
-</ul>  
 
-<h2>License</h2>
+## How to use this module
+In order to use this module, you need to have a Oracle's database, and the information of the 
+DSN (hostname, port, SID or service name) if you use one.
 
-<p><a href="http://badges.mit-license.org" rel="nofollow"><img src="https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265" alt="License" data-canonical-src="http://img.shields.io/:license-mit-blue.svg?style=flat-square" style="max-width:100%;"></a></p>
 
-<ul>
-  <li><strong><a href="http://opensource.org/licenses/mit-license.php" rel="nofollow">MIT license</a></strong></li>
-</ul>  
+## Overview
+
+
+1. Connect to a Oracle DB  
+Configurate connection credenctials
+
+2. Execute a query  
+Execute query on the database
+
+3. Close connection  
+Close oracle connection for session  
+
+
+
+
+----
+### OS
+
+- windows
+- mac
+- linux
+- docker
+
+### Dependencies
+- [**requests**](https://pypi.org/project/requests/)
+### License
+  
+![MIT](https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265)  
+[MIT](http://opensource.org/licenses/mit-license.ph)
