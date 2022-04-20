@@ -50,7 +50,7 @@ if module == "connect":
         try:
             cx_Oracle.init_oracle_client(config_dir=oracle_client_path)
         except:
-            pass
+            PrintException()
         
     # dsn = cx_Oracle.makedsn("olmo", "1521", "PROD")
 
