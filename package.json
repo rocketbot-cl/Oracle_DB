@@ -118,8 +118,25 @@
                 "en":"SID or service name from the DSN"
             },
             "id": "dsnSID",
-            "css": "col-md-4"
+            "css": "col-md-6"
           },
+            {
+            "type": "folder_select",
+            "placeholder": {
+                "es": "C:/Oracle/Client",
+                "en": "C:/Oracle/Client"                        
+            },
+            "title": {
+                "es": "Ruta a carpeta del Cliente:",
+                "en": "Path to folder of the client:"
+            },
+            "description": {
+                "es": "Es la carpeta del cliente con la version correspondiente",
+                "en": "Folder with the client of the correct version"
+            },
+            "id": "oracle_client_path",
+            "css": "col-md-6"
+            },
           {
             "type": "input",
             "placeholder": "var",
