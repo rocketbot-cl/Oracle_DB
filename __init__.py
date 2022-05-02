@@ -34,13 +34,12 @@ module = GetParams('module')
 if module == "connect":
     user = GetParams('user')
     password = GetParams('password')
-    dsnHostname = GetParams('dsnHostname')
-    dsnPort = GetParams('dsnPort')
-    dsnSID = GetParams('dsnSID')
+    dsn = GetParams('dsn')
     session = GetParams('session')
     result = GetParams('result')
     oracle_client_path = GetParams("oracle_client_path")
-    dsn = ""
+    if not dsn:
+        dsn = ""
 
     if not session:
         session = SESSION_DEFAULT
@@ -48,18 +47,9 @@ if module == "connect":
     
     if oracle_client_path is not None:
         try:
-            cx_Oracle.init_oracle_client(config_dir=oracle_client_path)
+            cx_Oracle.init_oracle_client(oracle_client_path)
         except:
-            PrintException()
-        
-    # dsn = cx_Oracle.makedsn("olmo", "1521", "PROD")
-
-    if dsnHostname is not None:
-
-        try:
-            dsn = cx_Oracle.makedsn(dsnHostname, dsnPort, dsnSID)
-        except:
-            pass
+            cx_Oracle.init_oracle_client()
 
 
     con = cx_Oracle.connect(user, password, dsn)
@@ -111,6 +101,35 @@ if module == "execute":
                 except:
                     mod_oracle_sessions[session][result] = data_str
                 SetVar(result, data_str)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "executeProcedure":
+    procedure = GetParams('procedureName')
+    procedureParams = GetParams("procedureParams")
+    typeVar = GetParams("typeVar")
+    session = GetParams('session')
+    result = GetParams('result')
+
+
+    try:
+        procedureParams = eval(procedureParams)
+    except:
+        PrintException()
+
+    if not session:
+        session = SESSION_DEFAULT
+
+    cursor = mod_oracle_sessions[session]["cursor"]
+    con = mod_oracle_sessions[session]["connection"]
+
+    try:
+        parcialResult = cursor.var(typeVar)
+        procedureParams.append(parcialResult)
+        cursor.callproc(procedureName, procedureParams)
+        realResult = parcialResult.getvalue()
+        SetVar(result, realResult)
     except Exception as e:
         PrintException()
         raise e
