@@ -45,14 +45,18 @@ if module == "connect":
         session = SESSION_DEFAULT
     
     
-    if oracle_client_path is not None:
-        try:
-            cx_Oracle.init_oracle_client(oracle_client_path)
-        except:
-            cx_Oracle.init_oracle_client()
+    try:
+        if oracle_client_path is not None:
+            try:
+                cx_Oracle.init_oracle_client(oracle_client_path)
+            except:
+                cx_Oracle.init_oracle_client()
+    except:
+        pass
+        
 
 
-    con = cx_Oracle.connect(user, password, dsn)
+    con = cx_Oracle.connect(user, password, dsn=dsn)
     try:
         cursor = con.cursor()
         mod_oracle_sessions[session] = {
@@ -106,15 +110,17 @@ if module == "execute":
         raise e
 
 if module == "executeProcedure":
-    procedure = GetParams('procedureName')
-    procedureParams = GetParams("procedureParams")
+    procedureName = GetParams('procedureName')
+    iframe = GetParams("iframe")
     typeVar = GetParams("typeVar")
     session = GetParams('session')
     result = GetParams('result')
 
 
     try:
-        procedureParams = eval(procedureParams)
+        iframe = eval(iframe)
+        params = iframe["table"]
+        # params = eval(iframe["table"])
     except:
         PrintException()
 
@@ -125,11 +131,26 @@ if module == "executeProcedure":
     con = mod_oracle_sessions[session]["connection"]
 
     try:
-        parcialResult = cursor.var(typeVar)
-        procedureParams.append(parcialResult)
+        procedureParams = []
+        types = {"VARCHAR": str, "INTEGER": int, "SYS_REFCURSOR": cx_Oracle.CURSOR, "date": lambda x: datetime.datetime.strptime(x, "%d/%m/%Y")}
+        variables = []
+        for i, param in enumerate(params):
+            if param["type"] in types:
+                if not param["output"]:
+                    var = types[param["type"]](param["value"])
+                
+                if param["output"]:
+                    var = cursor.var(types[param["type"]])
+                    variables.append({"position": i, "name": param["value"]})
+            procedureParams.append(var)
+
         cursor.callproc(procedureName, procedureParams)
-        realResult = parcialResult.getvalue()
-        SetVar(result, realResult)
+        for var in variables:
+            value = procedureParams[var["position"]].getvalue()
+            if isinstance(cx_Oracle.CURSOR, value):
+                value = value.fetchall()
+            SetVar(var["name"], value) #type:ignore
+        
     except Exception as e:
         PrintException()
         raise e

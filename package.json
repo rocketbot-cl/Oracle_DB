@@ -247,76 +247,7 @@
                   "en":"Name of the procedure in the database"
               },
               "id": "procedureName",
-              "css": "col-md-4"
-            },
-            {
-                "type": "input",
-                "placeholder": "[salesman_id, year, order_count]",
-                "title": {
-                  "es": "Parametros del procedure:",
-                  "en": "Params of the procedure:"
-                },
-                "description":{
-                    "es":"Parametros que necesito el procedure para ejecucion",
-                    "en":"Params of the procedure that needs in order to execute it"
-                },
-                "id": "procedureParams",
-                "css": "col-md-8"
-            },
-            {
-                "type": "select",
-                "title": {
-                  "es": "Tipo de variable output:",
-                  "en": "Output type:"
-                },
-                "description":{
-                    "es":"Tipo de variable que devuelve el output del procedure",
-                    "en":"Variable type returned by the output"
-                },
-                "options": [
-                    {
-                      "title": "--Seleccione--",
-                      "value": ""
-                    },
-                    {
-                      "title": "Bolean",
-                      "value": "bool"
-                    },
-                    {
-                      "title": "Raw",
-                      "value": "bytes"
-                    },
-                    {
-                        "title": "Date",
-                        "value": "datetime.date"
-                    },
-                    {
-                        "title": "Datetime",
-                        "value": "datetime.datetime"
-                    },
-                    {
-                        "title": "Interval DS",
-                        "value": "datetime.timedelta"
-                    },
-                    {
-                        "title": "Number (decimal)",
-                        "value": "decimal.Decimal"
-                    },
-                    {
-                        "title": "Number (float)",
-                        "value": "float"
-                    },
-                    {
-                        "title": "Number (int)",
-                        "value": "int"
-                    },
-                    {
-                        "title": "Varchar",
-                        "value": "str"
-                    }
-                  ],
-                "id": "typeVar",
-                "css": "col-md-12"
+              "css": "col-md-6"
             },
             {
               "type": "input",
@@ -333,23 +264,17 @@
               "css": "col-md-6"
             },
             {
-              "type": "input",
-              "placeholder": "var",
+              "type": "html",
               "title": {
-                "es": "Asignar resultado a variable:",
-                "en": "Set result to var:"
+                  "es": "Parámetros del Procedure",
+                  "en": "Procedure parameters",
+                  "pr": "Parâmetros do procedimento"
               },
-              "description": {
-                  "es": "Variable donde se desea guardar el resultado.",
-                  "en": "Varialbe where to store the result."
-                },
-              "help": {
-                "es": "Nombre de variable sin {}",
-                "en": "Variable name without {}"
-              },
-              "id": "result",
-              "css": "col-md-6"
-            }
+              "src": "index.html",
+              "id": "html",
+              "css": "col-md-12",
+              "style": "height:250px;"
+              }
           ]
         },
         "video_youtube": "",
