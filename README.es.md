@@ -1,34 +1,35 @@
 # Oracle
   
-Modulo to connect to an Oracle DB  
+Modulo para conectarse a una DB Oracle  
 
 *Read this in other languages: [English](README.md), [Español](README.es.md).*
 
 *[How to use](/docs/how_to_use.md)*
 
-## How to install this module
+## Como instalar este módulo
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
+__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
 
-## How to use this module
-In order to use this module, you need to have a Oracle's database, and the information of the DSN (hostname, port, SID or service name) if you use one.
+
+## Como usar este módulo
+Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos de DSN si es que se usa.
 
 
 ## Overview
 
 
-1. Connect to a Oracle DB  
-Configurate connection credenctials
+1. Conectarse a bd Oracle  
+Configurar credenciales de conexion
 
-2. Execute a query  
-Execute query
+2. Ejecutar una query  
+Ejecuta una query hacia la bd Oracle
 
-3. Execute a procedure  
-Execute procedure in the Oracle Database
+3. Ejecutar una procedure  
+Ejecuta una procedure hacia la bd Oracle
 
-4. Close connection  
-Close oracle connection for session  
+4. Cerrar conexión  
+Cierra una conexión de oracle por sesión  
 
 
 
