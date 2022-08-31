@@ -118,9 +118,14 @@ if module == "executeProcedure":
 
 
     try:
-        iframe = eval(iframe)
-        params = iframe["table"]
+        print(iframe)
+        if iframe != None:
+            iframe = eval(iframe)
+            params = iframe["table"]
+            print(params)
         # params = eval(iframe["table"])
+        else:
+            params = {}
     except:
         PrintException()
 
@@ -135,14 +140,16 @@ if module == "executeProcedure":
         types = {"VARCHAR": str, "INTEGER": int, "SYS_REFCURSOR": cx_Oracle.CURSOR, "date": lambda x: datetime.datetime.strptime(x, "%d/%m/%Y")}
         variables = []
         for i, param in enumerate(params):
-            if param["type"] in types:
-                if not param["output"]:
-                    var = types[param["type"]](param["value"])
-                
-                if param["output"]:
-                    var = cursor.var(types[param["type"]])
-                    variables.append({"position": i, "name": param["value"]})
-            procedureParams.append(var)
+            if param != {}:
+                if param["type"] in types:
+                    if not param["output"]:
+                        var = types[param["type"]](param["value"])
+                    
+                    if param["output"]:
+                        var = cursor.var(types[param["type"]])
+                        variables.append({"position": i, "name": param["value"]})
+                procedureParams.append(var)
+            
 
         cursor.callproc(procedureName, procedureParams)
         for var in variables:
