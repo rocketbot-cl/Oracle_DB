@@ -3,8 +3,6 @@
 Modulo para conectarse a una DB Oracle  
 
 *Read this in other languages: [English](Manual_Oracle.md), [Español](Manual_Oracle.es.md).*
-
-*[How to use](how_to_use.md)*
   
 ![banner](imgs/Banner_Oracle.png)
 ## Como instalar este módulo
@@ -13,8 +11,8 @@ __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Ro
 
 
 ## Como usar este módulo
-Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos de DSN si es que se usa.
-También se debe descomprimir el archivo 'bin.zip' dentro de la carpeta Oracle.
+1. Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos de DSN si es que se usa.
+2. The 'bin.zip' file must be unzipped both in the Oracle module folder and in the folder where you have the Oracle database installed.
 
 
 ## Descripción de los comandos
