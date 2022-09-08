@@ -12,7 +12,8 @@ __Download__ and __install__ the content in 'modules' folder in Rocketbot path
 
 
 ## How to use this module
-In order to use this module, you need to have a Oracle's database, and the information of the DSN (hostname, port, SID or service name) if you use one.
+1. In order to use this module, you need to have a Oracle's database, and the information of the DSN (hostname, port, SID or service name) if you use one.
+2. The 'bin.zip' file must be unzipped both in the Oracle module folder and in the folder where you have the Oracle database installed.
 
 
 ## Overview

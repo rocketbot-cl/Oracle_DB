@@ -86,7 +86,7 @@ if module == "execute":
             con.commit()
             if result:
                 SetVar(result, True)
-        # cred_oracle = {"user": user, "password": password, "dsn": dsn}
+
         else:
             data = [r for r in cursor]
             regex = r"datetime.datetime\(\d\d\d\d,\s?\d\d,\s?\d\d?,\s?\d\d?,\s?\d\d?,?\s?\d?\d?\)"
@@ -123,7 +123,7 @@ if module == "executeProcedure":
             iframe = eval(iframe)
             params = iframe["table"]
             print(params)
-        # params = eval(iframe["table"])
+
         else:
             params = {}
     except:

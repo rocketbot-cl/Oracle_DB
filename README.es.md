@@ -13,7 +13,8 @@ __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Ro
 
 
 ## Como usar este módulo
-Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos de DSN si es que se usa.
+1. Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos de DSN si es que se usa.
+2. El archivo 'bin.zip' se debe descomprimir tanto en la carpeta del módulo Oracle, como en la carpeta donde tienes instalada la base de datos de Oracle.
 
 
 ## Overview

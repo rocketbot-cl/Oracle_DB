@@ -1,19 +1,18 @@
 # Oracle
   
-Modulo to connect to an Oracle DB
+Module to connect to an Oracle DB
 
 *Read this in other languages: [English](Manual_Oracle.md), [Español](Manual_Oracle.es.md).*
-
-*[How to use](how_to_use.md)*
   
-![banner](/docs/imgs/Banner_Oracle.png)
+![banner](imgs/Banner_Oracle.png)
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
 ## How to use this module
-In order to use this module, you need to have a Oracle's database, and the information of the DSN (hostname, port, SID or service name) if you use one.
+1. In order to use this module, you need to have a Oracle's database, and the information of the DSN (hostname, port, SID or service name) if you use one.
+2. The 'bin.zip' file must be unzipped both in the Oracle module folder and in the folder where you have the Oracle database installed.
 
 
 ## Description of the commands
