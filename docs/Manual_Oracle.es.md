@@ -6,16 +6,15 @@ Modulo para conectarse a una DB Oracle
 
 *[How to use](how_to_use.md)*
   
-![banner](/docs/imgs/Banner_Oracle.png)
+![banner](imgs/Banner_Oracle.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
 
-
-
 ## Como usar este módulo
 Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos de DSN si es que se usa.
+También se debe descomprimir el archivo 'bin.zip' dentro de la carpeta Oracle.
 
 
 ## Descripción de los comandos
