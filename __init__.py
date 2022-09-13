@@ -34,35 +34,29 @@ module = GetParams('module')
 if module == "connect":
     user = GetParams('user')
     password = GetParams('password')
-    dsnHostname = GetParams('dsnHostname')
-    dsnPort = GetParams('dsnPort')
-    dsnSID = GetParams('dsnSID')
+    dsn = GetParams('dsn')
     session = GetParams('session')
     result = GetParams('result')
     oracle_client_path = GetParams("oracle_client_path")
-    dsn = ""
+    if not dsn:
+        dsn = ""
 
     if not session:
         session = SESSION_DEFAULT
     
     
-    if oracle_client_path is not None:
-        try:
-            cx_Oracle.init_oracle_client(config_dir=oracle_client_path)
-        except:
-            pass
+    try:
+        if oracle_client_path is not None:
+            try:
+                cx_Oracle.init_oracle_client(oracle_client_path)
+            except:
+                cx_Oracle.init_oracle_client()
+    except:
+        pass
         
-    # dsn = cx_Oracle.makedsn("olmo", "1521", "PROD")
-
-    if dsnHostname is not None:
-
-        try:
-            dsn = cx_Oracle.makedsn(dsnHostname, dsnPort, dsnSID)
-        except:
-            pass
 
 
-    con = cx_Oracle.connect(user, password, dsn)
+    con = cx_Oracle.connect(user, password, dsn=dsn)
     try:
         cursor = con.cursor()
         mod_oracle_sessions[session] = {
@@ -92,7 +86,7 @@ if module == "execute":
             con.commit()
             if result:
                 SetVar(result, True)
-        # cred_oracle = {"user": user, "password": password, "dsn": dsn}
+
         else:
             data = [r for r in cursor]
             regex = r"datetime.datetime\(\d\d\d\d,\s?\d\d,\s?\d\d?,\s?\d\d?,\s?\d\d?,?\s?\d?\d?\)"
@@ -111,6 +105,59 @@ if module == "execute":
                 except:
                     mod_oracle_sessions[session][result] = data_str
                 SetVar(result, data_str)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "executeProcedure":
+    procedureName = GetParams('procedureName')
+    iframe = GetParams("iframe")
+    typeVar = GetParams("typeVar")
+    session = GetParams('session')
+    result = GetParams('result')
+
+
+    try:
+        print(iframe)
+        if iframe != None:
+            iframe = eval(iframe)
+            params = iframe["table"]
+            print(params)
+
+        else:
+            params = {}
+    except:
+        PrintException()
+
+    if not session:
+        session = SESSION_DEFAULT
+
+    cursor = mod_oracle_sessions[session]["cursor"]
+    con = mod_oracle_sessions[session]["connection"]
+
+    try:
+        procedureParams = []
+        types = {"VARCHAR": str, "INTEGER": int, "SYS_REFCURSOR": cx_Oracle.CURSOR, "date": lambda x: datetime.datetime.strptime(x, "%d/%m/%Y")}
+        variables = []
+        for i, param in enumerate(params):
+            if param != {}:
+                if param["type"] in types:
+                    if not param["output"]:
+                        var = types[param["type"]](param["value"])
+                    
+                    if param["output"]:
+                        var = cursor.var(types[param["type"]])
+                        variables.append({"position": i, "name": param["value"]})
+                procedureParams.append(var)
+            
+
+        cursor.callproc(procedureName, procedureParams)
+        for var in variables:
+            value = procedureParams[var["position"]].getvalue()
+            if isinstance(cx_Oracle.CURSOR, value):
+                value = value.fetchall()
+            SetVar(var["name"], value) #type:ignore
+        
     except Exception as e:
         PrintException()
         raise e

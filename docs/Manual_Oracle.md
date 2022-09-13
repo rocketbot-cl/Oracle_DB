@@ -1,51 +1,55 @@
-
-
-
-
 # Oracle
   
-Modulo para conectarse a una DB Oracle  
+Module to connect to an Oracle DB
+
+*Read this in other languages: [English](Manual_Oracle.md), [Español](Manual_Oracle.es.md).*
   
 ![banner](imgs/Banner_Oracle.png)
-## Como instalar este módulo
+## How to install this module
   
-__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
+__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
+## How to use this module
+1. In order to use this module, you need to have a Oracle's database, and the information of the DSN (hostname, port, SID or service name) if you use one.
+2. The 'bin.zip' file must be unzipped both in the Oracle module folder and in the folder where you have the Oracle database installed.
 
 
-## Como usar este módulo
-Para usar este módulo, tienes que tener una base de datos de Oracle creada, y tener los datos
- de DSN si es que se usa.
+## Description of the commands
 
-
-## Descripción de los comandos
-
-### Conectarse a bd Oracle
+### Connect to a Oracle DB
   
-Configurar credenciales de conexion
-|Parámetros|Descripción|ejemplo|
+Configurate connection credenctials
+|Parameters|Description|example|
 | --- | --- | --- |
-|Sesión|Nombre que se desea poner a la sesion|Conn1|
-|Usuario|Nombre de usuario de la base de datos|sys|
-|Contraseña|Password del usuario previamente usado|password|
-|DSN Hostname de Conexion|Hostname asignado en el DSN|Oracle.host.com/ORCL|
-|DSN Puerto de Conexion|Puerto asignado en el DSN|1521|
-|DSN SID / Service name de Conexion|SID o nombre de servicio asignado en el DSN|pdborcl / pdborcl.example.com|
-|Asignar a variable|Variable donde se desea guardar el resultado.|var|
+|Session|Name for identify the session|Conn1|
+|User|Name of the user to connect to the data base|sys|
+|Password|Password from the user previously used|password|
+|Path to folder of the client|Folder with the client of the correct version|C:/Oracle/Client|
+|DSN data|Data necessary for the conextion to the DSN|(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbhost.example.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orclpdb1)))|
+|Assign to variable|Varialbe where to store the result.|var|
 
-### Ejecutar una query
+### Execute a query
   
-Ejecuta una query hacia la bd Oracle
-|Parámetros|Descripción|ejemplo|
+Execute query
+|Parameters|Description|example|
 | --- | --- | --- |
-|Query|Query que se desea ejecutar en la base de datos|SELECT * from table|
-|Sesión|Nombre de la sesion previamente iniciada|Conn1|
-|Asignar resultado a variable|Variable donde se desea guardar el resultado.|var|
+|Query|Query to execute in the database|SELECT * from table|
+|Session|Name of the session previously started|Conn1|
+|Set result to var|Varialbe where to store the result.|var|
 
-### Cerrar conexión
+### Execute a procedure
   
-Cierra una conexión de oracle por sesión
-|Parámetros|Descripción|ejemplo|
+Execute procedure in the Oracle Database
+|Parameters|Description|example|
 | --- | --- | --- |
-|Sesión|Nombre de la sesion previamente iniciada que se desea cerrar|Conn1|
+|Name of the procedure|Name of the procedure in the database|get_order|
+|Session|Name of the session previously started|Conn1|
+|Procedure parameters|||
+
+### Close connection
+  
+Close oracle connection for session
+|Parameters|Description|example|
+| --- | --- | --- |
+|Session|Name of the session previously started that you want to close|Conn1|
