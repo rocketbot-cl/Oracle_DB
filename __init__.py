@@ -10,8 +10,14 @@ bin_path = base_path + "modules" + os.sep + "Oracle" + os.sep + "bin"
 if bin_path not in os.environ['PATH']:
     os.environ["PATH"] += os.pathsep + bin_path
 
-if cur_path not in sys.path:
-    sys.path.append(cur_path)
+cur_path_x64 = os.path.join(cur_path, 'Windows' + os.sep +  'x64' + os.sep)
+cur_path_x86 = os.path.join(cur_path, 'Windows' + os.sep +  'x86' + os.sep)
+
+if sys.maxsize > 2**32 and cur_path_x64 not in sys.path:
+    sys.path.append(cur_path_x64)
+
+if sys.maxsize < 2**32 and cur_path_x86 not in sys.path:
+    sys.path.append(cur_path_x86)
 
 import cx_Oracle
 import re
