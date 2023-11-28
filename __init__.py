@@ -124,11 +124,9 @@ if module == "executeProcedure":
 
 
     try:
-        print(iframe)
         if iframe != None:
-            iframe = eval(iframe)
+            iframe = eval(iframe.replace("null", "None").replace("false", "False").replace("true", "True"))
             params = iframe["table"]
-            print(params)
 
         else:
             params = {}
@@ -143,7 +141,7 @@ if module == "executeProcedure":
 
     try:
         procedureParams = []
-        types = {"VARCHAR": str, "INTEGER": int, "SYS_REFCURSOR": cx_Oracle.CURSOR, "date": lambda x: datetime.datetime.strptime(x, "%d/%m/%Y")}
+        types = {"VARCHAR": str, "INTEGER": int, "SYS_REFCURSOR": cx_Oracle.CURSOR, "DATE": lambda x: datetime.datetime.strptime(x, "%d/%m/%Y"), "TIMESTAMP": lambda x: datetime.datetime.strptime(x, "%d/%m/%Y %H:%M:%S")}
         variables = []
         for i, param in enumerate(params):
             if param != {}:
@@ -160,8 +158,12 @@ if module == "executeProcedure":
         cursor.callproc(procedureName, procedureParams)
         for var in variables:
             value = procedureParams[var["position"]].getvalue()
-            if isinstance(cx_Oracle.CURSOR, value):
-                value = value.fetchall()
+            try:
+                if str(type(value)) == "<class 'cx_Oracle.Cursor'>":
+                    value = value.fetchall()
+            except Exception as e:
+                print(e)
+
             SetVar(var["name"], value) #type:ignore
         
     except Exception as e:
@@ -183,4 +185,3 @@ if module == "close":
     except Exception as e:
         PrintException()
         raise e
-
