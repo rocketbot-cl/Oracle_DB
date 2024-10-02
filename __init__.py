@@ -88,7 +88,7 @@ if module == "execute":
 
     try:
         cursor.execute(query)
-        if query.lower().startswith(("insert", "update", "delete", "alter")):
+        if query.lower().startswith(("insert", "update", "delete", "alter", "create", "grant")):
             con.commit()
             if result:
                 SetVar(result, True)
@@ -112,6 +112,7 @@ if module == "execute":
                     mod_oracle_sessions[session][result] = data_str
                 SetVar(result, data_str)
     except Exception as e:
+        SetVar(result, False)
         PrintException()
         raise e
 
